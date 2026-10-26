@@ -1,0 +1,230 @@
+# Edit this file in plugins/FrostPVP/config.yml on your SERVER.
+# Or edit settings through the OP-only in-game /frost config menu.
+# Run /frost reload as OP to apply manual file changes without restarting.
+# This is for changing SETTINGS; Java logic changes still require a new JAR.
+# Freeze will enforce player position and view direction server-side, but cannot
+# completely disable local mouse/camera movement without client mods.
+
+snowball:
+  cooldown-seconds: 10
+  slowness-seconds: 2
+  horizontal-velocity: 2.45
+  vertical-velocity: 0.40
+
+tnt:
+  cooldown-seconds: 10
+  fuse-seconds: 1.5
+  # Maximum block-breaking and player-damage distance in blocks.
+  radius-blocks: 2.0
+  # TNT explosion strength: 4.0 is vanilla TNT, 2.0 is smaller.
+  # Actual block destruction varies by material and surrounding blocks.
+  explosion-power: 2.0
+  break-blocks: true
+  # Minecraft health points: 4.0 = 2 hearts before extra protection effects.
+  # Uses armor- and enchantment-bypassing damage, compatible with regular totems.
+  damage-health-points: 4.0
+
+windcharge:
+  cooldown-seconds: 20
+  freeze-seconds: 3
+  # Show icy/powder-snow screen vignette + shivering effect.
+  powder-snow-overlay: true
+
+# Old Storm Trident from v1.5 now becomes the Grapple Trident.
+# This setting controls additional Fire Aspect burning time on thrown hit.
+trident:
+  fire-seconds: 8
+
+grapple:
+  cooldown-seconds: 20
+  # Speed applied EACH tick, not a one-time knockback.
+  horizontal-velocity: 1.5
+  vertical-velocity: 0.35
+
+# Riptide only works in rain or water. The three-strike ability activates
+# ONLY after Riptide propulsion damages another player, not ordinary melee.
+riptide:
+  cooldown-seconds: 20
+  damage-per-strike-health-points: 3.0
+  ticks-between-strikes: 8
+
+firework:
+  cooldown-seconds: 45
+  missiles: 5
+  damage-health-points: 1.0
+  # Players are selected near the LAUNCH POINT (not up in the sky).
+  target-range-blocks: 64.0
+  sky-delay-ticks: 25
+  homing-speed: 1.2
+  glowing-seconds: 15
+
+# Non-destructive 6x6 area wave of lava particles around the caster.
+# 3 blocks each side from the caster, up to 2.5 blocks vertical difference.
+lava:
+  cooldown-seconds: 30
+  radius-blocks: 3.0
+  damage-health-points: 6.0
+  wave-duration-ticks: 18
+  # Four fire-damage pulses, one per second. Fire Resistance ignores these pulses.
+  fire-pulses: 4
+  fire-pulse-health-points: 1.0
+
+# Thrown spinning Netherite Axe. A direct hit freezes the target in place.
+battleaxe:
+  cooldown-seconds: 40
+  stun-seconds: 5
+  throw-speed: 1.3
+  max-range-blocks: 30.0
+
+# Frozen Shield of Defiance. Hold and sneak-right-click to activate.
+# For 10 seconds the bearer cannot be stunned by Frost weapons.
+# While blocking with a raised shield, incoming attackers get pushed back.
+shield:
+  cooldown-seconds: 60
+  active-seconds: 10
+  # Horizontal velocity applied directly (bypasses netherite knockback resistance).
+  knockback-horizontal: 0.85
+  knockback-vertical: 0.30
+
+# Frozen Sword: physical velocity burst (not teleport sliding) with icy trail.
+# New sword is obtained from the OP-only /frost weapon collection.
+sword:
+  cooldown-seconds: 25
+  dash-blocks: 9
+  # Initial knockback-style lunge strength; applied ONCE, not every server tick.
+  dash-speed-blocks-per-tick: 1.8
+  # 7 health points = 3.5 hearts on each directly hit opponent.
+  damage-health-points: 7.0
+  trail-duration-seconds: 5
+  slowness-seconds: 3
+  slowness-level: 2
+
+# Frozen Spear: throws a visual spear at the ground, producing an advancing
+# line of chunky PACKED_ICE particles. Spikes become wider, taller, and farther.
+# Each living target (players and mobs) takes damage once per cast.
+spear:
+  cooldown-seconds: 30
+  spike-count: 8
+  spike-spacing-blocks: 1.5
+  spike-distance-growth: 0.22
+  spike-size-growth: 0.23
+  ticks-between-spikes: 4
+  damage-health-points: 3.0
+  launch-velocity: 0.8
+
+# Frozen Totem: no vanilla resurrection. Aura follows the caster.
+# Regeneration I for the caster and trusted players; Weakness I for enemies.
+totem:
+  cooldown-seconds: 45
+  active-seconds: 12
+  radius-blocks: 10.0
+  effect-refresh-ticks: 10
+
+# v2.4: Frost effects target living mobs as well as players. While stunned,
+# players may eat edible items (including golden apples), but cannot walk/attack.
+# The Frozen Totem treats mobs as untrusted enemies and applies Weakness I.
+
+# One Frozen Pickaxe of Duality, right-click to switch Fortune V / Silk Touch I.
+# Old Fortune and Silk Frost pickaxes also switch modes on right-click.
+# Both enchantments work with the 3x3 mining effect.
+# The pickaxe mines the plane surrounding the original broken block.
+# Radius 1 = 3x3, 0 = 1x1, 2 = 5x5 (use carefully on survival servers).
+pickaxes:
+  enabled: true
+  radius: 1
+
+# Frozen Bow: shift-right-click to prepare, release Shift, charge and fire.
+# Arrow impact starts a 10x10 rain for 5 seconds; each hit deals 1 heart
+# and applies Blindness II for 10 seconds.
+bow:
+  cooldown-seconds: 45
+  rain-duration-seconds: 5
+  radius-blocks: 10.0
+  damage-health-points: 2.0
+  blindness-seconds: 10
+  arrows-per-wave: 3
+  wave-interval-ticks: 5
+
+# Frozen Crossbow of the Warden: regular shots are three 0.5-heart icicles
+# (Multishot). Shift + right-click prepares the next shot's Warden Shriek.
+# Warden Shriek deals 4 hearts within a 20-block straight beam.
+# It does NOT apply Slowness to the shooter. This ability has a
+# configurable default 40-second cooldown.
+crossbow:
+  shriek-cooldown-seconds: 40
+  shriek-range-blocks: 20.0
+  shriek-damage-health-points: 8.0
+  icicle-damage-health-points: 1.0
+
+# Frozen Netherite armor pieces with Diamond Rib trim. Armor passives work
+# individually as each marked piece is equipped.
+armor:
+  helmet:
+    crouch-seconds: 5
+    reveal-radius-blocks: 15.0
+    glowing-seconds: 10
+    reveal-cooldown-seconds: 120
+  chestplate:
+    reflect-chance-percent: 10.0
+  leggings:
+    resistance-enabled: true
+  boots:
+    speed-enabled: true
+    fall-immunity: true
+
+
+rod:
+  max-anchor-distance-blocks: 40.0
+  pull-strength: 2.75
+
+horn:
+  cooldown-seconds: 60
+  skeleton-count: 5
+  despawn-seconds: 25
+  spawn-radius-blocks: 6.0
+
+# No resource pack needed. If a player carries at least one marked Frost item
+# anywhere in their inventory (or is wearing Frost armor), they emit snowflakes.
+visuals:
+  passive-frost-particles: true
+  particle-interval-ticks: 10
+  particle-count: 5
+
+
+# Frost server-wide events. Open /frost event to choose an event and reward.
+# Only OPs (frost.event permission) can start and stop events.
+# Server restarts cancel active events; event results are not persisted.
+events:
+  default-duration-minutes: 20
+  # Radius used to search for safe meteor and treasure chest landing spots.
+  # Every sampled location is checked AGAINST THE CURRENT WORLD BORDER.
+  spawn-range-blocks: 450
+  # Solo capture required for KOTH; contested zones award no points.
+  koth-radius-blocks: 10
+  koth-capture-seconds: 90
+  # Maximum-distance random area used to spawn the Frost Titan near the host.
+  boss-spawn-range-blocks: 40
+  # Virtual raid HP beyond Minecraft's max_health attribute cap (1024).
+  # Default tuned for a 15-player geared raid; can be adjusted.
+  titan-health: 6000.0
+  # The Warden is moved by short, collision-checked positional steps,
+  # because vanilla AI is disabled to prevent its sonic boom and huge melee hits.
+  titan-chase-range-blocks: 85.0
+  titan-chase-speed-per-step: 0.48
+  # Every special attack reaches at least 20 blocks from the Titan.
+  # Targeted hits still have smaller dodgeable impact zones.
+  titan-attack-radius-blocks: 24.0
+  # Native melee is disabled; this is the raw melee damage before armor.
+  titan-melee-damage-health-points: 6.0
+  # Prevent one extreme hit from deleting the raid's health pool.
+  titan-max-damage-per-hit: 24.0
+  # Reduces received damage so ~15 fully-geared players get a real raid fight.
+  # Only affects the Titan, not normal player or weapon ability damage.
+  titan-damage-received-multiplier: 0.30
+  # v3.2.5: meteor uses chunk tickets and immediate frame-by-frame motion
+  # so the descent works even when no players are nearby or the client lags.
+  # A multi-part 5-block core descends into a block-built icy crater.
+  # Only flat NATURAL ground is selected and the whole footprint stays inside world border.
+  # Impact changes are temporary and restored when the event ends.
+  meteor-impact-radius-blocks: 7
+  meteor-flight-seconds: 7
